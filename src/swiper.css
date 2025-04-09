@@ -1,9 +1,12 @@
-.swiper-pagination-bullet {
+  .swiper-pagination-bullet {
     width: 9px;
     height: 9px;
     cursor: pointer;
+    margin: 0 6px !important;
   }
-
+  .swiper-pagination{
+    margin-bottom: 20px;
+  }
   .swiper-pagination-bullet-active {
     background: #000;
   }
@@ -16,7 +19,6 @@
   .swiper-slide {
     width: 350px;     /* Fixed slide width */
     height: 300px;    /* Fixed slide height */
-    /* Optional: Add styles for better visibility */
     display: flex;
     align-items: center;
     justify-content: center;

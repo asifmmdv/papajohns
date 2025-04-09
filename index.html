@@ -59,9 +59,7 @@
     </header>
     <main class="mt-[32px]"> 
       <div class="swiper relative h-[370px]">
-        <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
-          <!-- Slides -->
           <div class="swiper-slide"><img src="./images/slider1.png" alt="sld1"></div>
           <div class="swiper-slide"><img src="./images/slider2.png" alt="sld2"></div>
           <div class="swiper-slide"><img src="./images/slider3.png" alt="sld3"></div>
@@ -71,34 +69,53 @@
           <div class="swiper-slide"><img src="./images/slider7.png" alt="sld7"></div>
           <div class="swiper-slide"><img src="./images/slider8.jpg" alt="sld8"></div>
           <div class="swiper-slide"><img src="./images/slider9.png" alt="sld9"></div>
-
         </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-      
-        <!-- If we need scrollbar -->
+        <div class="swiper-pagination"></div>  
+      </div>
+      <div class="max-w-[90%] m-auto mt-[24px]">
+        <p class="text-[24px] font-bold leading-[24px]">Yeni məhsullarımızı dadmısınız?</p>
+        <p class="font-bold text-[18px] mt-[24px] text-center">Gözlənilən an gəldi!</p>
+        <p class="leading-[16px] text-[14px]">Xırtıldayan pendirli yeni pizzalar artıq satışdadır və hər kəsi ləzzətli seçimlərlə sevindirir.
+          <br>Yeni pizzalarımız artıq bütün restoranlarımızda mövcuddur. Sizi də yeni pizzalarımızı kəşf etməyə dəvət edirik.</p>
+        <div class="mt-[24px] flex flex-wrap items-center gap-[20px] justify-center">
+          <article class="flex flex-col">
+              <img class="mobile:h-[203px] mobile:w-[305px]" src="./images/pizza1.jpeg" alt="pz1">
+              <p class="text-[18px] mt-[10px] text-left font-[900]">Crispy Cheese Pepperoni</p>
+              <p class="text-[14px] mt-[10px] ">Pizza sousu, Pepperoni, Ekstra Panko <br> Mozzarella</p>
+              <p class="underline text-[12px] mt-[10px]">Sifariş et</p>
+          </article>
+          <article class="flex flex-col">
+              <img class="mobile:h-[203px] mobile:w-[305px]" src="./images/pizza2.jpeg" alt="pz2">
+              <p class="text-[18px] mt-[10px] text-left font-[900]">Crispy Cheese 4 Pendir</p>
+              <p class="text-[14px] mt-[10px]">Pizza sousu, Panko Mozzarella, Feta, Parmezan və Cheddar pendirləri</p>
+              <p class="underline text-[12px] mt-[10px]">Sifariş et</p>
+          </article>
+          <article class="flex flex-col">
+              <img class="mobile:h-[203px] mobile:w-[305px]" src="./images/pizza3.jpeg" alt="pz3">
+              <p class="text-[18px] mt-[10px] text-left font-[900]">Crispy Cheese Spaysi İtalyan</p>
+              <p class="text-[14px] mt-[10px] ">Pizza sousu, Ekstra İtalyan sosisi, Pepperoni, Panko Mozzarella, Pul bibər</p>
+              <p class="underline text-[12px] mt-[10px]">Sifariş et</p>
+          </article>
+          </div>
       </div>
     </main>
     <script src="./js/header.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  
-    <!-- Initialize Swiper -->
     <script>
       const swiper = new Swiper('.swiper', {
-        // Optional parameters
         direction: 'horizontal',
         loop: true,
-        slidesPerView: 'auto', // Allows slides to adapt to container
-        centeredSlides: true,  // Centers the active slide
-        spaceBetween: 10,      // 10px gap between slides
+        slidesPerView: 'auto', 
+        centeredSlides: true,  
+        spaceBetween: 10,  
         autoplay: {
-        delay: 5000,            // Auto-slide every 5 seconds (5000ms)
-        disableOnInteraction: false, // Continue autoplay after user interaction
+        delay: 5000,         
+        disableOnInteraction: false, 
         },
         breakpoints: {
-          // When window width is <= 480px
+
           480: {
-            slidesPerView: 1,   // Show only 1 slide centered
+            slidesPerView: 1,   
             spaceBetween: 10,
           }
         },
