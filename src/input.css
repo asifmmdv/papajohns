@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+
+@theme {
+    --breakpoint-mobile: 480px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 992px;
+  }
+
+  .opensidebar{
+    max-height: 500px;
+    opacity: 1;
+    top:70px;
+    transition: 1s;
+  }
+
+  .openmenu{
+    display: flex;
+    width: 100%;
+  }
