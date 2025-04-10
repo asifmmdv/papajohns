@@ -11,20 +11,43 @@
     <link rel="stylesheet" href="./src/swiper.css">
 </head>
 <body>
-    <header class="relative">
-      <div class="flex flex-row px-[20px] justify-between h-[60px] shadow-[0_2px_6px_0_rgba(0,0,0,0.3)] items-center">
+    <header class="relative w-full shadow-[0_2px_6px_0_rgba(0,0,0,0.3)]">
+      <div class="flex flex-row tablet:max-w-[88%] m-auto px-[20px] justify-between h-[60px] items-center">
         <a href="./index.html" class="w-[94.21px] h-[21px]">
-          <img  src="./images/PJ-logo.png" alt="">
+          <img  class="mobile:min-w-[130px] mobile:min-h-[29px]" src="./images/PJ-logo.png" alt="">
         </a>
         <div class="flex gap-[10px] items-center">
-          <button class="border-[1px] bg-[#CFEB0B] h-[35px] w-[130px] text-[12px] rounded-[20px]">
+          <button class="border-[1px] desktop:hidden bg-[#CFEB0B] h-[35px] w-[130px] text-[12px] rounded-[20px]">
             SİFARİŞ ET
           </button>
-          <button onclick="opensb()" class="text-[16px] text-[rgb(57,92,48)]">
+          <button onclick="opensb()" class="text-[16px] desktop:hidden text-[rgb(57,92,48)]">
             <i class="fa-solid fa-bars"></i>
           </button>
+          <div class="flex py-[16px] max-desktop:hidden text-[18px] font-bold border-[#e6e6e6]">
+            <div class="w-[24px] h-[24px]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+                <path d="M7.5 0C3.4 0 0 3.4 0 7.5S3.4 15 7.5 15 15 11.6 15 7.5 11.6 0 7.5 0zm4.2 10c.2-.6.3-1.3.3-2h2c-.1.7-.2 1.4-.5 2h-1.8zM3.3 5c-.2.6-.3 1.3-.3 2H1c.1-.7.2-1.4.5-2h1.8zm7.4 0c.2.6.3 1.3.3 2H8V5h2.7zM8 4V1.1c.2.1.5.2.7.3.4.3.8.7 1.1 1.3.2.4.4.8.6 1.3H8zM5.2 2.7c.3-.6.7-1 1.1-1.3.2-.1.5-.3.7-.3V4H4.6c.1-.5.3-.9.6-1.3zM7 5v2H4c0-.7.1-1.4.3-2H7zm-5.5 5c-.3-.6-.4-1.3-.5-2h2c0 .7.1 1.4.2 2H1.5zM4 8h3v2H4.3C4.1 9.4 4 8.7 4 8zm3 3v2.9c-.2-.1-.5-.2-.7-.3-.4-.3-.8-.7-1.1-1.3-.2-.4-.4-.8-.6-1.3H7zm2.8 1.3c-.3.6-.7 1-1.1 1.3-.2.2-.4.3-.7.3V11h2.4c-.1.5-.3.9-.6 1.3zM8 10V8h3c0 .7-.1 1.4-.3 2H8zm4-3c0-.7-.1-1.4-.2-2h1.8c.3.6.4 1.3.5 2H12zm1-3h-1.5c-.3-.9-.7-1.7-1.2-2.4.7.4 1.3.8 1.8 1.3.3.3.6.7.9 1.1zM2.9 2.9C3.4 2.4 4 2 4.7 1.6c-.5.7-.9 1.5-1.2 2.4H2c.3-.4.6-.8.9-1.1zM2 11h1.5c.3.9.7 1.7 1.2 2.4-.7-.4-1.3-.8-1.8-1.3-.3-.3-.6-.7-.9-1.1zm10.1 1.1c-.5.5-1.1 1-1.8 1.3.5-.6.9-1.4 1.2-2.4H13c-.3.4-.6.8-.9 1.1z"></path>
+              </svg>
+            </div>
+            <select>
+              <option value="az"> Azərbaycanca</option>
+              <option value="en"> English</option>
+            </select>
+          </div>
         </div>
-      </div>  
+      </div>
+      <div class="max-desktop:hidden tablet:max-w-[88%] m-auto items-center px-[20px] py-[10px] border-[#dbd7d7] border-t-[1px]  gap-[20px] flex flex-row justify-between">
+        <div class="gap-[20px] flex flex-row font-bold ">
+          <div>Menyu</div>
+          <div>Təkliflər</div>
+          <div>Papa Bonus</div>
+          <div>Papa Talk</div>
+          <div>Haqqımızda</div>
+        </div>
+        <button class="border-[1px] max-desktop:hidden bg-[#CFEB0B] h-[35px] w-[130px] text-[15px] rounded-[20px]">
+          SİFARİŞ ET
+        </button>
+      </div> 
       <div id="sidebar" class="flex w-[100%] flex-col bg-[white] px-[24px]  text-[18px] font-bold absolute  opacity-0 z-[9999] max-h-0 overflow-hidden">
         <div class="pb-[30px] w-[100%]">
           <div onclick="openMenu()">Menyu</div>
@@ -45,14 +68,13 @@
           </select>
         </div>
       </div>
-      <div id="menu" class="hidden flex-row overflow-x-auto  p-[16px] min-w-[100vw] text-[14px] gap-[16px]">
-        <div>KAMPANIYALAR</div>
+      <div class="hidden flex-row overflow-x-auto  p-[16px] min-w-[100vw] text-[14px] gap-[16px]">
         <div>PAPADIAS</div>
         <div>PIZZA</div>
         <div>QƏLYANALTILAR</div>
         <div>SALAT</div>
         <div>PASTA</div>
-        <div>SOUSLAE</div>
+        <div>SOUSLAR</div>
         <div>İÇKİLƏR</div>
         <div>DESERTLƏR</div>
       </div>
@@ -60,41 +82,100 @@
     <main class="mt-[32px]"> 
       <div class="swiper relative h-[370px]">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="./images/slider1.png" alt="sld1"></div>
-          <div class="swiper-slide"><img src="./images/slider2.png" alt="sld2"></div>
-          <div class="swiper-slide"><img src="./images/slider3.png" alt="sld3"></div>
-          <div class="swiper-slide"><img src="./images/slider4.png" alt="sld4"></div>
-          <div class="swiper-slide"><img src="./images/slider5.png" alt="sld5"></div>
-          <div class="swiper-slide"><img src="./images/slider6.png" alt="sld6"></div>
-          <div class="swiper-slide"><img src="./images/slider7.png" alt="sld7"></div>
-          <div class="swiper-slide"><img src="./images/slider8.jpg" alt="sld8"></div>
-          <div class="swiper-slide"><img src="./images/slider9.png" alt="sld9"></div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider1.png" alt="sld1">
+            <img class="max-mobile:hidden w-[100%] h-[100%]" src="./images/silder11.png" alt="sld11">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider2.png" alt="sld2">
+            <img class="max-mobile:hidden w-[100%] h-[100%]" src="./images/slider12.png" alt="sld12">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider3.png" alt="sld3">
+            <img class="max-mobile:hidden w-[100%] h-[100%]" src="./images/slider13.png" alt="sld13">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider4.png" alt="sld4">
+            <img class="max-mobile:hidden w-[100%] h-[100%]" src="./images/slider20.png" alt="sld20">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider5.png" alt="sld5">
+            <img class="max-mobile:hidden w-[100%] h-[100%]" src="./images/slider14.png" alt="sld14">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider6.png" alt="sld6">
+            <img class="max-mobile:hidden" src="./images/slider15.png" alt="sld15">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider7.png" alt="sld7">
+            <img class="max-mobile:hidden" src="./images/slider16.png" alt="sld16">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider8.jpg" alt="sld8">
+            <img class="max-mobile:hidden" src="./images/slider17.png" alt="sld17">
+          </div>
+          <div class="swiper-slide">
+            <img class="mobile:hidden" src="./images/slider9.png" alt="sld9">
+            <img class="max-mobile:hidden" src="./images/slider19.png" alt="sld19">
+          </div>
         </div>
         <div class="swiper-pagination"></div>  
       </div>
-      <div class="max-w-[90%] m-auto mt-[24px]">
-        <p class="text-[24px] font-bold leading-[24px]">Yeni məhsullarımızı dadmısınız?</p>
-        <p class="font-bold text-[18px] mt-[24px] text-center">Gözlənilən an gəldi!</p>
-        <p class="leading-[16px] text-[14px]">Xırtıldayan pendirli yeni pizzalar artıq satışdadır və hər kəsi ləzzətli seçimlərlə sevindirir.
-          <br>Yeni pizzalarımız artıq bütün restoranlarımızda mövcuddur. Sizi də yeni pizzalarımızı kəşf etməyə dəvət edirik.</p>
-        <div class="mt-[24px] flex flex-wrap items-center gap-[20px] justify-center">
-          <article class="flex flex-col">
-              <img class="mobile:h-[203px] mobile:w-[305px]" src="./images/pizza1.jpeg" alt="pz1">
-              <p class="text-[18px] mt-[10px] text-left font-[900]">Crispy Cheese Pepperoni</p>
-              <p class="text-[14px] mt-[10px] ">Pizza sousu, Pepperoni, Ekstra Panko <br> Mozzarella</p>
-              <p class="underline text-[12px] mt-[10px]">Sifariş et</p>
+      <div class="m-auto w-[100%] px-[10px] mt-[24px]">
+        <div class="m-auto max-tablet:w-[95%] max-desktop:w-[80%] desktop:w-[82%]" >
+          <p class="text-[24px] font-bold leading-[24px] mobile:text-[32px] tablet:text-[36px] desktop:text-[46px]">Yeni məhsullarımızı dadmısınız?</p>
+          <p class="font-bold text-[18px] mt-[24px] mobile:text-[21px] tablet:text-[24px]  desktop:text-[28px] text-left">Gözlənilən an gəldi!</p>
+          <p class="leading-[16px] text-[14px] tablet:text-[14px] desktop:text-[16px]">Xırtıldayan pendirli yeni pizzalar artıq satışdadır və hər kəsi ləzzətli seçimlərlə sevindirir.
+            <br>Yeni pizzalarımız artıq bütün restoranlarımızda mövcuddur. Sizi də yeni pizzalarımızı kəşf etməyə dəvət edirik.</p>
+        </div>
+        <div class="mt-[36px] flex max-tablet:w-[95%] max-desktop:w-[80%] desktop:w-[82%] m-auto flex-wrap items-center gap-[20px] ">
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[250px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza1.jpeg" alt="pz1">
+              <p class="text-[18px] mt-[10px] text-left mobile:text-[16px] tablet:text-[18px] font-[900]">Crispy Cheese Pepperoni</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px]">Pizza sousu, Pepperoni, Ekstra Panko <br> Mozzarella</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
           </article>
-          <article class="flex flex-col">
-              <img class="mobile:h-[203px] mobile:w-[305px]" src="./images/pizza2.jpeg" alt="pz2">
-              <p class="text-[18px] mt-[10px] text-left font-[900]">Crispy Cheese 4 Pendir</p>
-              <p class="text-[14px] mt-[10px]">Pizza sousu, Panko Mozzarella, Feta, Parmezan və Cheddar pendirləri</p>
-              <p class="underline text-[12px] mt-[10px]">Sifariş et</p>
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[250px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza2.jpeg" alt="pz2">
+              <p class="text-[18px] mt-[10px] mobile:text-[16px] tablet:text-[18px] text-left font-[900]">Crispy Cheese 4 Pendir</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px]">Pizza sousu, Panko Mozzarella, Feta, Parmezan və Cheddar pendirləri</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
           </article>
-          <article class="flex flex-col">
-              <img class="mobile:h-[203px] mobile:w-[305px]" src="./images/pizza3.jpeg" alt="pz3">
-              <p class="text-[18px] mt-[10px] text-left font-[900]">Crispy Cheese Spaysi İtalyan</p>
-              <p class="text-[14px] mt-[10px] ">Pizza sousu, Ekstra İtalyan sosisi, Pepperoni, Panko Mozzarella, Pul bibər</p>
-              <p class="underline text-[12px] mt-[10px]">Sifariş et</p>
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[250px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza3.jpeg" alt="pz3">
+              <p class="text-[18px] mt-[10px] mobile:text-[16px] tablet:text-[18px] text-left font-[900]">Crispy Cheese Spaysi İtalyan</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px]">Pizza sousu, Ekstra İtalyan sosisi, Pepperoni, Panko Mozzarella, Pul bibər</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
+          </article>
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[250px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza4.jpeg" alt="pz4">
+              <p class="text-[18px] mt-[10px] mobile:text-[16px]  tablet:text-[18px] text-left font-[900]">Crispy Cheese Çiken Ranç</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px]">Ranç sousu, Qril Toyuğu, Pomidor, Panko Mozzarella</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
+          </article>
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[250px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza5.jpg" alt="pz5">
+              <p class="text-[18px] mt-[10px] text-left mobile:text-[16px] tablet:text-[18px] font-[900]">Star Çiken Barbekyu</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px]">Təzə xəmir, pendirlə doldurulmuş ulduz kənarları və unudulmaz dad – yeni Star pizzalarını sınayın!</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
+          </article>
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[368px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza6.jpg" alt="pz6">
+              <p class="text-[18px] mt-[10px] mobile:text-[16px] tablet:text-[18px] text-left font-[900]">Star Klassik Pepperoni</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px]">Təzə xəmir, pendirlə doldurulmuş ulduz kənarları və unudulmaz dad – yeni Star pizzalarını sınayın!</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
+          </article>
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[250px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza7.jpg" alt="pz6">
+              <p class="text-[18px] mt-[10px] mobile:text-[16px] tablet:text-[18px] text-left font-[900]">Star Marqerita</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px] ">Təzə xəmir, pendirlə doldurulmuş ulduz kənarları və unudulmaz dad – yeni Star pizzalarını sınayın!</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
+          </article>
+          <article class="flex flex-col max-mobile:w-[376px] max-mobile:h-[368px] mobile:w-[156px] mobile:h-[354px] desktop:h-[360px] desktop:w-[270px]">
+              <img class="max-mobile:h-[250px] max-mobile:w-[376px] mobile:h-[103px] mobile:w-[156px] desktop:w-[270px] desktop:h-[180px]" src="./images/pizza8.jpg" alt="pz7">
+              <p class="text-[18px] mt-[10px] mobile:text-[16px] tablet:text-[18px] text-left font-[900]">Star Vestern Barbekyu</p>
+              <p class="text-[14px] mt-[10px] mobile:text-[12px] tablet:text-[14px]">Təzə xəmir, pendirlə doldurulmuş ulduz kənarları və unudulmaz dad – yeni Star pizzalarını sınayın!</p>
+              <p class="underline text-[12px] tablet:text-[14px] desktop:text-[16px] mt-auto">Sifariş et</p>
           </article>
           </div>
       </div>
