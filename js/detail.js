@@ -109,7 +109,6 @@ function observeSections() {
     });
 }
 
-// Init function
 (async function init() {
     await Promise.all(endpoints.map(endpoint =>
         fetchData(endpoint.url, endpoint.container, endpoint.handler || handleProducts)
