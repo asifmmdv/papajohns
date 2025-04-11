@@ -381,6 +381,9 @@
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
   }
+  .px-\[1px\] {
+    padding-inline: 1px;
+  }
   .px-\[5px\] {
     padding-inline: 5px;
   }
