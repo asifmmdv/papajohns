@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
-    <header class="relative w-full shadow-[0_2px_6px_0_rgba(0,0,0,0.3)]">
+    <header class=" w-full sticky top-0 bg-[white] shadow-[0_2px_6px_0_rgba(0,0,0,0.3)]">
       <div class="flex flex-row tablet:max-w-[88%] m-auto px-[20px] justify-between h-[60px] items-center">
         <a href="../index.html" class="w-[94.21px] h-[21px]">
           <img  class="mobile:min-w-[130px] mobile:min-h-[29px]" src="../images/PJ-logo.png" alt="">
@@ -37,7 +37,7 @@
       </div>
       <div class="max-desktop:hidden tablet:max-w-[88%] m-auto items-center px-[20px] py-[10px] border-[#dbd7d7] border-t-[1px]  gap-[20px] flex flex-row justify-between">
         <div class="gap-[20px] flex flex-row font-bold ">
-          <div>Menyu</div>
+          <a href="/pages/detail.html">Menyu</a>
           <div>Təkliflər</div>
           <div>Papa Bonus</div>
           <div>Papa Talk</div>
@@ -52,7 +52,7 @@
       </div> 
       <div id="sidebar" class="flex w-[100%] flex-col bg-[white] px-[24px]  text-[18px] font-bold absolute  opacity-0 z-[9999] max-h-0 overflow-hidden">
         <div class="pb-[30px] w-[100%]">
-          <div onclick="openMenu()">Menyu</div>
+          <a href="/pages/detail.html">Menyu</a>
           <div>Təkliflər</div>
           <div>Papa Bonus</div>
           <div>Papa Talk</div>
@@ -72,16 +72,46 @@
       </div>
     </header>
     <main class="mt-[32px]">
-        <div class="px-[20px] tablet:max-w-[88%] m-auto">
+        <div id="sec1" class="tablet:max-w-[88%] mobile:max-w-[90%] w-[100%] m-auto">
             <p class="text-[24px] px-[20px] font-bold">PAPADIAS</p>
-            <div id="papadias" class="px-[20px] gap-[20px] pt-[16px] flex flex-wrap">
+            <div id="papadias" class="px-[10px]  gap-[10px] pt-[16px] flex flex-wrap">
             </div> 
         </div>
-        <div class="px-[20px] mt-[32px] tablet:max-w-[88%] m-auto">
+        <div id="sec2" class="mt-[32px] tablet:max-w-[88%] mobile:max-w-[90%] m-auto">
             <p class="text-[24px] px-[20px] font-bold">PIZZA</p>
-            <div id="pizza" class="px-[20px] gap-[20px] pt-[16px] flex flex-wrap">
+            <div id="pizza" class="px-[10px] gap-[10px] pt-[16px] flex flex-wrap">
             </div> 
         </div>
+        <div id="sec3" class="mt-[32px] tablet:max-w-[88%] mobile:max-w-[90%] m-auto">
+            <p class="text-[24px] px-[20px] font-bold">QALYANALTILAR</p>
+            <div id="qalyanaltilar" class="px-[10px] gap-[20px] pt-[16px] flex flex-wrap">
+            </div> 
+        </div>
+        <div id="sec4" class="mt-[32px] tablet:max-w-[88%] mobile:max-w-[90%] m-auto">
+            <p class="text-[24px] px-[20px] font-bold">SALAT</p>
+            <div id="salat" class="px-[10px] gap-[20px] pt-[16px] flex flex-wrap">
+            </div> 
+        </div>
+        <div id="sec5" class="mt-[32px] tablet:max-w-[88%] mobile:max-w-[90%] m-auto">
+            <p class="text-[24px] px-[20px] font-bold">PASTA</p>
+            <div id="pasta" class="px-[10px] gap-[20px] pt-[16px] flex flex-wrap">
+            </div> 
+        </div>
+        <div id="sec6" class="mt-[32px] tablet:max-w-[88%] mobile:max-w-[90%] m-auto">
+            <p class="text-[24px] px-[20px] font-bold">SOUSES</p>
+            <div id="souses" class="px-[10px] gap-[20px] pt-[16px] flex flex-wrap">
+            </div> 
+        </div>
+        <div id="sec7" class="mt-[32px] tablet:max-w-[88%] mobile:max-w-[90%] m-auto">
+            <p class="text-[24px] px-[20px] font-bold">ICKI</p>
+            <div id="icki" class="px-[10px] gap-[20px] pt-[16px] flex flex-wrap">
+            </div> 
+        </div>
+        <div id="sec8" class="mt-[32px] tablet:max-w-[88%] mobile:max-w-[90%] m-auto">
+            <p class="text-[24px] px-[20px] font-bold">DESERTLAR</p>
+            <div id="desertlar" class="px-[10px] gap-[20px] pt-[16px] flex flex-wrap">
+            </div> 
+        </div> 
     </main>
     <script src="../js/header.js"></script>
     <script src="../js/detail.js"></script>

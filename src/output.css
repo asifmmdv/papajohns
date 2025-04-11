@@ -7,9 +7,13 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-100: oklch(93.6% 0.032 17.717);
+    --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-white: #fff;
     --spacing: 0.25rem;
     --font-weight-bold: 700;
-    --tracking-widest: 0.1em;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -166,6 +170,15 @@
   .relative {
     position: relative;
   }
+  .sticky {
+    position: sticky;
+  }
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+  .z-999 {
+    z-index: 999;
+  }
   .z-\[9999\] {
     z-index: 9999;
   }
@@ -199,17 +212,11 @@
   .m-auto {
     margin: auto;
   }
-  .mt-\[4px\] {
-    margin-top: 4px;
-  }
   .mt-\[10px\] {
     margin-top: 10px;
   }
   .mt-\[24px\] {
     margin-top: 24px;
-  }
-  .mt-\[30px\] {
-    margin-top: 30px;
   }
   .mt-\[32px\] {
     margin-top: 32px;
@@ -217,17 +224,17 @@
   .mt-\[36px\] {
     margin-top: 36px;
   }
-  .mt-\[50px\] {
-    margin-top: 50px;
-  }
-  .mt-\[apx\] {
-    margin-top: apx;
-  }
-  .mt-\[auto\] {
-    margin-top: auto;
-  }
   .mt-auto {
     margin-top: auto;
+  }
+  .mb-\[4px\] {
+    margin-bottom: 4px;
+  }
+  .mb-\[8px\] {
+    margin-bottom: 8px;
+  }
+  .ml-\[4px\] {
+    margin-left: 4px;
   }
   .flex {
     display: flex;
@@ -241,9 +248,6 @@
   .h-\[24px\] {
     height: 24px;
   }
-  .h-\[26px\] {
-    height: 26px;
-  }
   .h-\[35px\] {
     height: 35px;
   }
@@ -256,32 +260,8 @@
   .h-\[116px\] {
     height: 116px;
   }
-  .h-\[200px\] {
-    height: 200px;
-  }
-  .h-\[210px\] {
-    height: 210px;
-  }
-  .h-\[220px\] {
-    height: 220px;
-  }
-  .h-\[230px\] {
-    height: 230px;
-  }
-  .h-\[236px\] {
-    height: 236px;
-  }
-  .h-\[240px\] {
-    height: 240px;
-  }
   .h-\[250px\] {
     height: 250px;
-  }
-  .h-\[266px\] {
-    height: 266px;
-  }
-  .h-\[276px\] {
-    height: 276px;
   }
   .h-\[370px\] {
     height: 370px;
@@ -289,38 +269,14 @@
   .max-h-0 {
     max-height: calc(var(--spacing) * 0);
   }
-  .min-h-\[266px\] {
-    min-height: 266px;
-  }
-  .w-\[1px\] {
-    width: 1px;
-  }
-  .w-\[20px\] {
-    width: 20px;
-  }
   .w-\[24px\] {
     width: 24px;
-  }
-  .w-\[30px\] {
-    width: 30px;
-  }
-  .w-\[40px\] {
-    width: 40px;
-  }
-  .w-\[50px\] {
-    width: 50px;
   }
   .w-\[60px\] {
     width: 60px;
   }
-  .w-\[90\%\] {
-    width: 90%;
-  }
   .w-\[94\.21px\] {
     width: 94.21px;
-  }
-  .w-\[95\%\] {
-    width: 95%;
   }
   .w-\[100\%\] {
     width: 100%;
@@ -331,14 +287,8 @@
   .w-\[175px\] {
     width: 175px;
   }
-  .w-\[195px\] {
-    width: 195px;
-  }
   .w-full {
     width: 100%;
-  }
-  .max-w-\[100\%\] {
-    max-width: 100%;
   }
   .min-w-\[100vw\] {
     min-width: 100vw;
@@ -364,8 +314,8 @@
   .justify-center {
     justify-content: center;
   }
-  .justify-end {
-    justify-content: flex-end;
+  .gap-0 {
+    gap: calc(var(--spacing) * 0);
   }
   .gap-\[10px\] {
     gap: 10px;
@@ -376,15 +326,6 @@
   .gap-\[20px\] {
     gap: 20px;
   }
-  .gap-\[w\] {
-    gap: w;
-  }
-  .self-end {
-    align-self: flex-end;
-  }
-  .justify-self-end {
-    justify-self: flex-end;
-  }
   .overflow-auto {
     overflow: auto;
   }
@@ -393,6 +334,9 @@
   }
   .overflow-x-auto {
     overflow-x: auto;
+  }
+  .rounded {
+    border-radius: 0.25rem;
   }
   .rounded-\[7px\] {
     border-radius: 7px;
@@ -418,38 +362,26 @@
   .border-\[\#e6e6e6\] {
     border-color: #e6e6e6;
   }
-  .border-\[grey\] {
-    border-color: grey;
-  }
-  .border-t-\[grey\] {
-    border-top-color: grey;
-  }
   .bg-\[\#CFEB0B\] {
     background-color: #CFEB0B;
-  }
-  .bg-\[\#a8a2a2\] {
-    background-color: #a8a2a2;
-  }
-  .bg-\[\#b8b8b8\] {
-    background-color: #b8b8b8;
-  }
-  .bg-\[\#c5c0c0\] {
-    background-color: #c5c0c0;
   }
   .bg-\[\#c7c0c0\] {
     background-color: #c7c0c0;
   }
-  .bg-\[grey\] {
-    background-color: grey;
-  }
   .bg-\[white\] {
     background-color: white;
+  }
+  .bg-white {
+    background-color: var(--color-white);
   }
   .p-\[16px\] {
     padding: 16px;
   }
-  .p-\[20px\] {
-    padding: 20px;
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+  .px-\[5px\] {
+    padding-inline: 5px;
   }
   .px-\[10px\] {
     padding-inline: 10px;
@@ -460,6 +392,9 @@
   .px-\[24px\] {
     padding-inline: 24px;
   }
+  .py-1 {
+    padding-block: calc(var(--spacing) * 1);
+  }
   .py-\[10px\] {
     padding-block: 10px;
   }
@@ -468,9 +403,6 @@
   }
   .pt-\[16px\] {
     padding-top: 16px;
-  }
-  .pt-\[24px\] {
-    padding-top: 24px;
   }
   .pb-\[30px\] {
     padding-bottom: 30px;
@@ -504,10 +436,6 @@
     --tw-leading: 24px;
     line-height: 24px;
   }
-  .font-\[18px\] {
-    --tw-font-weight: 18px;
-    font-weight: 18px;
-  }
   .font-\[900\] {
     --tw-font-weight: 900;
     font-weight: 900;
@@ -515,9 +443,6 @@
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
-  }
-  .text-\[1tpx\] {
-    color: 1tpx;
   }
   .text-\[rgb\(57\,92\,48\)\] {
     color: rgb(57,92,48);
@@ -535,14 +460,18 @@
     --tw-shadow: 0 2px 6px 0 var(--tw-shadow-color, rgba(0,0,0,0.3));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
+  .shadow-lg {
+    --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .max-desktop\:hidden {
     @media (width < 992px) {
       display: none;
-    }
-  }
-  .max-desktop\:w-\[\%\] {
-    @media (width < 992px) {
-      width: %;
     }
   }
   .max-desktop\:w-\[80\%\] {
@@ -550,84 +479,9 @@
       width: 80%;
     }
   }
-  .max-desktop\:w-\[85\%\] {
-    @media (width < 992px) {
-      width: 85%;
-    }
-  }
-  .max-desktop\:w-\[90\%\] {
-    @media (width < 992px) {
-      width: 90%;
-    }
-  }
-  .max-desktop\:w-\[95\%\] {
-    @media (width < 992px) {
-      width: 95%;
-    }
-  }
-  .max-desktop\:w-\[100\%\] {
-    @media (width < 992px) {
-      width: 100%;
-    }
-  }
-  .max-desktop\:max-w-\[528px\] {
-    @media (width < 992px) {
-      max-width: 528px;
-    }
-  }
-  .max-desktop\:px-\[0\] {
-    @media (width < 992px) {
-      padding-inline: 0;
-    }
-  }
-  .max-tablet\:hidden {
-    @media (width < 768px) {
-      display: none;
-    }
-  }
-  .max-tablet\:w-\[0\%\] {
-    @media (width < 768px) {
-      width: 0%;
-    }
-  }
-  .max-tablet\:w-\[1px\] {
-    @media (width < 768px) {
-      width: 1px;
-    }
-  }
-  .max-tablet\:w-\[90\%\] {
-    @media (width < 768px) {
-      width: 90%;
-    }
-  }
-  .max-tablet\:w-\[90\] {
-    @media (width < 768px) {
-      width: 90;
-    }
-  }
   .max-tablet\:w-\[95\%\] {
     @media (width < 768px) {
       width: 95%;
-    }
-  }
-  .max-tablet\:w-\[100\%\] {
-    @media (width < 768px) {
-      width: 100%;
-    }
-  }
-  .max-tablet\:w-\[100\%px\] {
-    @media (width < 768px) {
-      width: 100%px;
-    }
-  }
-  .max-tablet\:w-\[528px\] {
-    @media (width < 768px) {
-      width: 528px;
-    }
-  }
-  .max-tablet\:max-w-\[528px\] {
-    @media (width < 768px) {
-      max-width: 528px;
     }
   }
   .max-mobile\:hidden {
@@ -655,11 +509,6 @@
       display: none;
     }
   }
-  .mobile\:h-\[29px\] {
-    @media (width >= 480px) {
-      height: 29px;
-    }
-  }
   .mobile\:h-\[103px\] {
     @media (width >= 480px) {
       height: 103px;
@@ -675,24 +524,14 @@
       min-height: 29px;
     }
   }
-  .mobile\:w-\[90\%\] {
-    @media (width >= 480px) {
-      width: 90%;
-    }
-  }
-  .mobile\:w-\[95\%\] {
-    @media (width >= 480px) {
-      width: 95%;
-    }
-  }
-  .mobile\:w-\[130px\] {
-    @media (width >= 480px) {
-      width: 130px;
-    }
-  }
   .mobile\:w-\[156px\] {
     @media (width >= 480px) {
       width: 156px;
+    }
+  }
+  .mobile\:max-w-\[90\%\] {
+    @media (width >= 480px) {
+      max-width: 90%;
     }
   }
   .mobile\:min-w-\[130px\] {
@@ -720,44 +559,9 @@
       font-size: 32px;
     }
   }
-  .tablet\:hidden {
-    @media (width >= 768px) {
-      display: none;
-    }
-  }
-  .tablet\:max-w-\[\%\] {
-    @media (width >= 768px) {
-      max-width: %;
-    }
-  }
-  .tablet\:max-w-\[50\%\] {
-    @media (width >= 768px) {
-      max-width: 50%;
-    }
-  }
-  .tablet\:max-w-\[82\%\] {
-    @media (width >= 768px) {
-      max-width: 82%;
-    }
-  }
-  .tablet\:max-w-\[82px\] {
-    @media (width >= 768px) {
-      max-width: 82px;
-    }
-  }
   .tablet\:max-w-\[88\%\] {
     @media (width >= 768px) {
       max-width: 88%;
-    }
-  }
-  .tablet\:max-w-\[90\%\] {
-    @media (width >= 768px) {
-      max-width: 90%;
-    }
-  }
-  .tablet\:max-w-\[1140px\] {
-    @media (width >= 768px) {
-      max-width: 1140px;
     }
   }
   .tablet\:text-\[14px\] {
@@ -795,54 +599,14 @@
       height: 360px;
     }
   }
-  .desktop\:w-\[8\%\] {
-    @media (width >= 992px) {
-      width: 8%;
-    }
-  }
-  .desktop\:w-\[80\%\] {
-    @media (width >= 992px) {
-      width: 80%;
-    }
-  }
   .desktop\:w-\[82\%\] {
     @media (width >= 992px) {
       width: 82%;
     }
   }
-  .desktop\:w-\[85\%\] {
-    @media (width >= 992px) {
-      width: 85%;
-    }
-  }
-  .desktop\:w-\[100\%\%\] {
-    @media (width >= 992px) {
-      width: 100%%;
-    }
-  }
-  .desktop\:w-\[100\%\] {
-    @media (width >= 992px) {
-      width: 100%;
-    }
-  }
   .desktop\:w-\[270px\] {
     @media (width >= 992px) {
       width: 270px;
-    }
-  }
-  .desktop\:w-\[1140px\] {
-    @media (width >= 992px) {
-      width: 1140px;
-    }
-  }
-  .desktop\:w-\[1240px\] {
-    @media (width >= 992px) {
-      width: 1240px;
-    }
-  }
-  .desktop\:w-\[1340px\] {
-    @media (width >= 992px) {
-      width: 1340px;
     }
   }
   .desktop\:text-\[16px\] {
@@ -864,7 +628,7 @@
 .opensidebar {
   max-height: 500px;
   opacity: 1;
-  top: 70px;
+  top: 60px;
   transition: 1s;
 }
 .openmenu {
