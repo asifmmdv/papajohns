@@ -381,20 +381,11 @@
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
   }
-  .px-\[1px\] {
-    padding-inline: 1px;
-  }
   .px-\[5px\] {
     padding-inline: 5px;
   }
   .px-\[10px\] {
     padding-inline: 10px;
-  }
-  .px-\[12px\] {
-    padding-inline: 12px;
-  }
-  .px-\[15px\] {
-    padding-inline: 15px;
   }
   .px-\[20px\] {
     padding-inline: 20px;

@@ -73,9 +73,11 @@ function handleHeader() {
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = document.querySelector('header').offsetHeight;
+      const sectionPosition = section.offsetTop - headerHeight-10;
+      window.scrollTo({ top: sectionPosition, behavior: 'smooth' });
     }
-}
+  }
 
 
 function observeSections() {
