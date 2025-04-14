@@ -124,13 +124,13 @@ function openModal(item = null) {
                 <div onclick='modal.classList.toggle("hidden")' class="ml-auto mr-[12px] mt-[8px]">
                     <i class="fa-solid fa-xmark text-[28px]"></i>
                 </div>
-                <div class="flex flex-col h-full py-[20px]">
-                    <div class="flex flex-col m-auto w-[300px]">
+                <div class="flex flex-col justify-center h-full py-[20px]">
+                    <div class="flex flex-col ">
                         <img src="${item.img}" class="w-[317px] h-[211px] rounded-[20px]">
                         <h2 class="text-[24px] mt-[20px] text-left font-bold">${item.title}</h2>
                         <p class="text-[14px] mt-[8px]">${item.composition}</p>
                     </div>
-                    <div class="flex items-center p-[24px] gap-4 mx-auto text-nowrap justify-between mt-[280px]">
+                    <div class="flex items-center p-[24px] gap-4 text-nowrap justify-between mt-[280px]">
                         <div class="flex items-center gap-7 h-[60px]">
                             <p class="text-[18px] w-[80px] font-[900] text-[#2D5D2A]" id="total-price">${item.price} AZN</p>
                             <div class="flex items-center gap-2">
@@ -143,7 +143,7 @@ function openModal(item = null) {
                                 </button>
                             </div>
                         </div>
-                        <button class="px-6 py-2 bg-[#CFEB0B]  text-[black] border-[1px] border-black rounded-[30px]" onclick="addToCart()">
+                        <button class="px-6 py-2 bg-[#CFEB0B] text-[black] border-[1px] border-black rounded-[30px]" onclick="addToCart()">
                             ƏLAVƏ ET
                         </button>
                     </div>       
