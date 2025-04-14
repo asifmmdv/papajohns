@@ -1,6 +1,8 @@
 const menu = document.getElementById('menu');
 const categoryData = [];
 const modal = document.getElementById('modal');
+const basket = document.getElementById('basket');
+const totalBasket = document.getElementById('totalBasket');
 
 const endpoints = [
     { url: "https://papajson.vercel.app/category", container: null, handler: handleHeader },
@@ -27,20 +29,25 @@ const containerToSectionMap = {
 
 let currentItem = null;
 let quantity = 1;
-
-function loadCartFromLocalStorage() {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-        cart = JSON.parse(savedCart);
-    }
-    updateBasketDisplay();
-}
-
-function saveCartToLocalStorage() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
-
 let cart = [];
+window.productData = {};
+
+
+const savedCart = localStorage.getItem('cart');
+if (savedCart) {
+    cart = JSON.parse(savedCart);
+}
+
+async function init() {
+    try {
+        await Promise.all(endpoints.map(endpoint =>
+            fetchData(endpoint.url, endpoint.container, endpoint.handler || handleProducts)
+        ));
+        updateBasketDisplay();
+    } catch (error) {
+        console.error("Initialization error:", error);
+    }
+}
 
 async function fetchData(url, containerId, handler) {
     try {
@@ -56,23 +63,51 @@ async function fetchData(url, containerId, handler) {
         console.error(`Error fetching ${url}:`, error);
     }
 }
+
 function handleProducts(containerId, items) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    container.innerHTML = items.map(item => `
-        <article onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="h-[250px] shadow-lg flex justify-between flex-col gap-0 w-[175px] cursor-pointer">
-            <img src="${item.img}" class="w-[175px] rounded-[7px] h-[116px]">
+    window.productData[containerId] = items;
+
+    container.innerHTML = items.map(item => {
+        const cartItem = cart.find(ci => ci.id === item.id);
+        const quantity = cartItem ? cartItem.quantity : 0;
+        
+        return `
+        <article onclick="openModal(${JSON.stringify(item).replace(/"/g, '&quot;')})" 
+                 class="h-[250px] shadow-lg flex justify-between flex-col gap-0 w-[175px] cursor-pointer relative">
+            <div class="relative">
+                <img src="${item.img}" class="w-[175px] rounded-[7px] h-[116px] object-cover">
+                ${quantity > 0 ? `
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#00000053]  text-white  w-[175px] h-[116px] flex items-center justify-center
+                            pointer-events-none">
+                    <span class="font-bold text-[32px]">${quantity}</span>
+                </div>
+                ` : ''}
+            </div>
             <h1 class="text-[14px] px-[5px] font-[900]">${item.title}</h1>
-            <p class="text-[12px] px-[5px] mb-[8px]">${item.composition}</p>
-            <button class="text-[12px] ml-[4px] font-bold mb-[4px] flex justify-center bg-[#c7c0c0] w-[60px] rounded-[7px] text-left">
+            <p class="text-[12px] px-[5px] mb-[8px] line-clamp-2">${item.composition}</p>
+            <button class="text-[12px] ml-[4px] font-bold mb-[4px] flex justify-center bg-[#c7c0c0] w-[60px] rounded-[7px]">
                 <span>${item.price} AZN</span>
             </button>
         </article>
-    `).join('');
+        `;
+    }).join('');
+}
+
+function refreshAllProductDisplays() {
+    if (!window.productData) return;
+    
+    Object.keys(window.productData).forEach(containerId => {
+        const items = window.productData[containerId];
+        handleProducts(containerId, items);
+    });
 }
 
 function handleHeader() {
+    if (!menu) return;
+    
     menu.innerHTML = categoryData.map(item => {
         const containerId = item.category.toLowerCase();
         const sectionId = containerToSectionMap[containerId];
@@ -127,6 +162,8 @@ function observeSections() {
 }
 
 function openModal(item = null) {
+    if (!modal) return;
+    
     const modalContent = document.getElementById('modal-content');
     if (item) {
         currentItem = item;
@@ -167,7 +204,6 @@ function openModal(item = null) {
     modal.classList.toggle("hidden");
 }
 
-
 function changeQuantity(amount) {
     quantity = Math.max(1, quantity + amount);
     document.getElementById('quantity').textContent = quantity;
@@ -199,8 +235,11 @@ function addToCart() {
     }
 }
 
+function saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
 function updateBasketDisplay() {
-    const basket = document.getElementById('basket');
     if (!basket) return;
 
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -222,11 +261,13 @@ function updateBasketDisplay() {
         basket.classList.add('hidden');
     }
     
-    saveCartToLocalStorage(); 
+    refreshAllProductDisplays();
+    saveCartToLocalStorage();
 }
 
 function showBasketDetails() {
-    const totalBasket = document.getElementById("totalBasket");
+    if (!totalBasket) return;
+    
     totalBasket.classList.remove("hidden");
 
     if (cart.length === 0) {
@@ -236,7 +277,7 @@ function showBasketDetails() {
                 <button onclick="closeBasket()" class="mt-4 bg-gray-500 text-white py-2 px-6 rounded-full">Bağla</button>
             </div>
         `;
-        return; 
+        return;
     }
 
     totalBasket.innerHTML = `
@@ -289,23 +330,17 @@ function updateCartQuantity(itemId, amount) {
     }
 
     updateBasketDisplay();
-    showBasketDetails(); 
+    showBasketDetails();
 
     if (cart.length === 0) {
         closeBasket();
     }
-
-    saveCartToLocalStorage(); 
 }
 
 function closeBasket() {
-    const totalBasket = document.getElementById("totalBasket");
-    totalBasket.classList.add("hidden");
+    if (totalBasket) {
+        totalBasket.classList.add("hidden");
+    }
 }
 
-(async function init() {
-    await Promise.all(endpoints.map(endpoint =>
-        fetchData(endpoint.url, endpoint.container, endpoint.handler || handleProducts)
-    ));
-    loadCartFromLocalStorage();  
-})();
+init();

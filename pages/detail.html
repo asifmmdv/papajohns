@@ -13,11 +13,11 @@
     <div id="modal" class="w-[100vw] h-[100vh] hidden flex fixed inset-0 bottom-0 bg-[#838383] z-[99999] ">
       <div id="modal-content" class="rounded-[30px] w-[100%] h-[100%] bg-white"></div>
     </div>
-    <div onclick="showBasketDetails()" id="basket" class="h-[40px] hidden flex items-center fixed w-full bottom-0 bg-green-700" >
+    <div onclick="showBasketDetails()" id="basket" class="h-[40px] hidden flex items-center z-[999] fixed w-full bottom-0 bg-green-700" >
     </div>
-    <div id="totalBasket" class="inset-0 hidden bg-white z-[99999] fixed w-[100vw] h-[100vh]">
+    <div id="totalBasket" class="inset-0 hidden bg-white z-[9999] overflow-y-auto fixed w-[100vw] h-[100vh]">
     </div>
-    <header class=" w-full sticky top-0 bg-[white] shadow-[0_2px_6px_0_rgba(0,0,0,0.3)]">
+    <header class=" w-full sticky z-[999] top-0 bg-[white] shadow-[0_2px_6px_0_rgba(0,0,0,0.3)]">
       <div class="flex flex-row tablet:max-w-[88%] m-auto px-[20px] justify-between h-[60px] items-center">
         <a href="../index.html" class="w-[94.21px] h-[21px]">
           <img  class="mobile:min-w-[130px] mobile:min-h-[29px]" src="../images/PJ-logo.png" alt="">

@@ -181,6 +181,9 @@
   }
 }
 @layer utilities {
+  .pointer-events-none {
+    pointer-events: none;
+  }
   .absolute {
     position: absolute;
   }
@@ -199,10 +202,25 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .top-1\/2 {
+    top: calc(1/2 * 100%);
+  }
   .bottom-0 {
     bottom: calc(var(--spacing) * 0);
   }
+  .left-1\/2 {
+    left: calc(1/2 * 100%);
+  }
   .z-999 {
+    z-index: 999;
+  }
+  .z-9999 {
+    z-index: 9999;
+  }
+  .z-\[99\] {
+    z-index: 99;
+  }
+  .z-\[999\] {
     z-index: 999;
   }
   .z-\[9999\] {
@@ -286,6 +304,12 @@
   .ml-auto {
     margin-left: auto;
   }
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
   .flex {
     display: flex;
   }
@@ -328,6 +352,9 @@
   .h-\[370px\] {
     height: 370px;
   }
+  .h-\[full\] {
+    height: full;
+  }
   .max-h-0 {
     max-height: calc(var(--spacing) * 0);
   }
@@ -336,6 +363,9 @@
   }
   .w-8 {
     width: calc(var(--spacing) * 8);
+  }
+  .w-\[1\] {
+    width: 1;
   }
   .w-\[24px\] {
     width: 24px;
@@ -373,11 +403,28 @@
   .w-\[400px\] {
     width: 400px;
   }
+  .w-\[f\] {
+    width: f;
+  }
+  .w-\[full\] {
+    width: full;
+  }
   .w-full {
     width: 100%;
   }
   .min-w-\[100vw\] {
     min-width: 100vw;
+  }
+  .-translate-x-1\/2 {
+    --tw-translate-x: calc(calc(1/2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1/2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .transform {
+    transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
   }
   .cursor-pointer {
     cursor: pointer;
@@ -487,6 +534,9 @@
   .border-black {
     border-color: var(--color-black);
   }
+  .bg-\[\#00000053\] {
+    background-color: #00000053;
+  }
   .bg-\[\#838383\] {
     background-color: #838383;
   }
@@ -496,11 +546,17 @@
   .bg-\[\#c7c0c0\] {
     background-color: #c7c0c0;
   }
+  .bg-\[black\] {
+    background-color: black;
+  }
   .bg-\[rgb\(246\,246\,246\)\] {
     background-color: rgb(246,246,246);
   }
   .bg-\[white\] {
     background-color: white;
+  }
+  .bg-black {
+    background-color: var(--color-black);
   }
   .bg-gray-500 {
     background-color: var(--color-gray-500);
@@ -510,6 +566,9 @@
   }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .object-cover {
+    object-fit: cover;
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -614,6 +673,9 @@
   .text-\[28px\] {
     font-size: 28px;
   }
+  .text-\[32px\] {
+    font-size: 32px;
+  }
   .leading-\[16px\] {
     --tw-leading: 16px;
     line-height: 16px;
@@ -639,6 +701,9 @@
   }
   .text-\[\#2D5D2A\] {
     color: #2D5D2A;
+  }
+  .text-\[32\] {
+    color: 32;
   }
   .text-\[black\] {
     color: black;
@@ -870,6 +935,46 @@
   display: flex;
   width: 100%;
 }
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: rotateX(0);
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: rotateY(0);
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: rotateZ(0);
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: skewX(0);
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: skewY(0);
+}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -951,6 +1056,14 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-rotate-x: rotateX(0);
+      --tw-rotate-y: rotateY(0);
+      --tw-rotate-z: rotateZ(0);
+      --tw-skew-x: skewX(0);
+      --tw-skew-y: skewY(0);
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
