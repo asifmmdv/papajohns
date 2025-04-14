@@ -3,15 +3,15 @@ const categoryData = [];
 const modal = document.getElementById('modal');
 
 const endpoints = [
-    { url: "http://localhost:3000/category", container: null, handler: handleHeader },
+    { url: "https://papajson.vercel.app/category", container: null, handler: handleHeader },
     { url: "https://papajson.vercel.app/papadias", container: "papadias" },
-    { url: "http://localhost:3000/pizza", container: "pizza" },
-    { url: "http://localhost:3000/qalyanaltilar", container: "qalyanaltilar" },
-    { url: "http://localhost:3000/salat", container: "salat" },
-    { url: "http://localhost:3000/pasta", container: "pasta" },
-    { url: "http://localhost:3000/souses", container: "souses" },
-    { url: "http://localhost:3000/icki", container: "icki" },
-    { url: "http://localhost:3000/desertlar", container: "desertlar" }
+    { url: "https://papajson.vercel.app/pizza", container: "pizza" },
+    { url: "https://papajson.vercel.app/qalyanaltilar", container: "qalyanaltilar" },
+    { url: "https://papajson.vercel.app/salat", container: "salat" },
+    { url: "https://papajson.vercel.app/pasta", container: "pasta" },
+    { url: "https://papajson.vercel.app/souses", container: "souses" },
+    { url: "https://papajson.vercel.app/icki", container: "icki" },
+    { url: "https://papajson.vercel.app/desertlar", container: "desertlar" }
 ];
 
 const containerToSectionMap = {
@@ -28,6 +28,23 @@ const containerToSectionMap = {
 let currentItem = null;
 let quantity = 1;
 
+// Load cart from localStorage if it exists
+function loadCartFromLocalStorage() {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+    updateBasketDisplay();
+}
+
+// Save cart to localStorage
+function saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+let cart = [];
+
+// Fetch data for categories and items
 async function fetchData(url, containerId, handler) {
     try {
         const res = await fetch(url);
@@ -43,6 +60,7 @@ async function fetchData(url, containerId, handler) {
     }
 }
 
+// Handle displaying products
 function handleProducts(containerId, items) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -59,6 +77,7 @@ function handleProducts(containerId, items) {
     `).join('');
 }
 
+// Handle categories in the header
 function handleHeader() {
     menu.innerHTML = categoryData.map(item => {
         const containerId = item.category.toLowerCase();
@@ -73,6 +92,7 @@ function handleHeader() {
     observeSections(); 
 }
 
+// Scroll to the respective section
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -82,6 +102,7 @@ function scrollToSection(sectionId) {
     }
 }
 
+// Observe sections for active state
 function observeSections() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -113,6 +134,7 @@ function observeSections() {
     });
 }
 
+// Open modal to view item details
 function openModal(item = null) {
     const modalContent = document.getElementById('modal-content');
     if (item) {
@@ -152,9 +174,9 @@ function openModal(item = null) {
     }
     
     modal.classList.toggle("hidden");
-    
 }
 
+// Change quantity in modal
 function changeQuantity(amount) {
     quantity = Math.max(1, quantity + amount);
     document.getElementById('quantity').textContent = quantity;
@@ -165,6 +187,7 @@ function changeQuantity(amount) {
     }
 }
 
+// Add item to cart
 function addToCart() {
     if (currentItem) {
         const existingItem = cart.find(item => item.id === currentItem.id);
@@ -185,21 +208,15 @@ function addToCart() {
         openModal();
     }
 }
-(async function init() {
-    await Promise.all(endpoints.map(endpoint =>
-        fetchData(endpoint.url, endpoint.container, endpoint.handler || handleProducts)
-    ));
-})();
 
-let cart = [];
-
+// Update Basket Display and save to localStorage
 function updateBasketDisplay() {
     const basket = document.getElementById('basket');
     if (!basket) return;
-    
+
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
-    
+
     if (totalItems > 0) {
         basket.innerHTML = `
             <div class="flex justify-between items-center w-full px-4 text-white">
@@ -215,5 +232,93 @@ function updateBasketDisplay() {
     } else {
         basket.classList.add('hidden');
     }
+    
+    saveCartToLocalStorage(); // Save cart to localStorage
 }
 
+// Show basket details
+function showBasketDetails() {
+    const totalBasket = document.getElementById("totalBasket");
+    totalBasket.classList.remove("hidden");
+
+    if (cart.length === 0) {
+        totalBasket.innerHTML = `
+            <div class="p-4 flex flex-col justify-center items-center">
+                <p class="text-xl font-semibold">Səbətiniz Boşdur</p>
+                <button onclick="closeBasket()" class="mt-4 bg-gray-500 text-white py-2 px-6 rounded-full">Bağla</button>
+            </div>
+        `;
+        return; 
+    }
+
+    totalBasket.innerHTML = `
+        <div class="p-4 flex flex-col gap-4">
+            <div class="flex justify-between items-center border-b pb-2">
+                <h2 class="text-2xl font-bold">Səbət</h2>
+                <button onclick="closeBasket()" class="text-lg font-bold text-red-500">
+                    <i class="fa-solid fa-xmark text-[28px]"></i>
+                </button>
+            </div>
+            <div id="basket-items" class="flex flex-col gap-4 overflow-y-auto max-h-[70vh]">
+                ${cart.map(item => `
+                    <div class="flex items-center justify-between border p-2 rounded">
+                        <div class="flex items-center gap-3">
+                            <img src="${item.img}" class="w-16 h-16 object-cover rounded" />
+                            <div>
+                                <h3 class="font-semibold">${item.title}</h3>
+                                <p class="text-sm">${item.price} AZN</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateCartQuantity('${item.id}', -1)" class="w-6 h-6 border rounded-full flex items-center justify-center">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateCartQuantity('${item.id}', 1)" class="w-6 h-6 border rounded-full flex items-center justify-center">+</button>
+                        </div>
+                        <div class="font-bold">${item.totalPrice} AZN</div>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="mt-auto pt-4 border-t flex justify-between items-center">
+                <span class="text-xl font-bold">Cəmi:</span>
+                <span class="text-xl font-bold">${cart.reduce((sum, i) => sum + (i.price * i.quantity), 0).toFixed(2)} AZN</span>
+            </div>
+        </div>
+    `;
+}
+
+// Update item quantity in cart
+function updateCartQuantity(itemId, amount) {
+    const item = cart.find(i => i.id === itemId);
+    if (!item) return;
+
+    item.quantity = Math.max(0, item.quantity + amount);
+
+    if (item.quantity === 0) {
+        cart = cart.filter(i => i.id !== itemId);
+    } else {
+        item.totalPrice = (item.price * item.quantity).toFixed(2);
+    }
+
+    updateBasketDisplay();
+    showBasketDetails(); 
+
+    if (cart.length === 0) {
+        closeBasket();
+    }
+
+    saveCartToLocalStorage(); // Save cart to localStorage
+}
+
+// Close basket modal
+function closeBasket() {
+    const totalBasket = document.getElementById("totalBasket");
+    totalBasket.classList.add("hidden");
+}
+
+// Initialize the page and load data
+(async function init() {
+    await Promise.all(endpoints.map(endpoint =>
+        fetchData(endpoint.url, endpoint.container, endpoint.handler || handleProducts)
+    ));
+    loadCartFromLocalStorage();  // Load cart from local storage on page load
+})();
