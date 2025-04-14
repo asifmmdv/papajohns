@@ -269,7 +269,7 @@ function showBasketDetails() {
                 <span class="text-xl font-bold">Yekun:</span>
                 <span class="text-xl font-bold">${cart.reduce((sum, i) => sum + (i.price * i.quantity), 0).toFixed(2)} AZN</span>
             </div>
-            <div>
+            <div class="w-[400px] m-auto">
                 <img src="../images/giphy.gif" alt="gif">
             </div>
         </div>
