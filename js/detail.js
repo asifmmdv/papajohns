@@ -179,7 +179,7 @@ function openModal(item = null) {
                         <h2 class="text-[24px] mt-[20px] text-left font-bold">${item.title}</h2>
                         <p class="text-[14px] text-center mt-[8px]">${item.composition}</p>
                     </div>
-                    <div class="flex items-center p-[24px]  gap-4 text-nowrap justify-between mt-[250px]">
+                    <div class="flex items-center p-[24px]  gap-4 text-nowrap justify-between mt-[200px]">
                         <div class="flex items-center gap-7 h-[60px]">
                             <p class="text-[18px] w-[80px] font-[900] text-[#2D5D2A]" id="total-price">${item.price} AZN</p>
                             <div class="flex items-center gap-2">
