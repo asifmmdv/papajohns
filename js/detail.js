@@ -167,23 +167,53 @@ function changeQuantity(amount) {
 
 function addToCart() {
     if (currentItem) {
-        const cartItem = {
-            ...currentItem,
-            quantity: quantity,
-            totalPrice: (currentItem.price * quantity).toFixed(2)
-        };
+        const existingItem = cart.find(item => item.id === currentItem.id);
         
-        // In a real app, you would add to cart storage here
-        console.log('Added to cart:', cartItem);
-        alert(`Added ${quantity} x ${currentItem.title} to cart! Total: ${cartItem.totalPrice} AZN`);
+        if (existingItem) {
+            existingItem.quantity += quantity;
+            existingItem.totalPrice = (existingItem.price * existingItem.quantity).toFixed(2);
+        } else {
+            const cartItem = {
+                ...currentItem,
+                quantity: quantity,
+                totalPrice: (currentItem.price * quantity).toFixed(2)
+            };
+            cart.push(cartItem);
+        }
         
+        updateBasketDisplay();
         openModal();
     }
 }
-
-// Initialize the app
 (async function init() {
     await Promise.all(endpoints.map(endpoint =>
         fetchData(endpoint.url, endpoint.container, endpoint.handler || handleProducts)
     ));
 })();
+
+let cart = [];
+
+function updateBasketDisplay() {
+    const basket = document.getElementById('basket');
+    if (!basket) return;
+    
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+    
+    if (totalItems > 0) {
+        basket.innerHTML = `
+            <div class="flex justify-between items-center w-full px-4 text-white">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold"><i class="fa-solid fa-basket-shopping"></i> ${totalItems}</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="font-bold">${totalPrice} AZN</span>
+                </div>
+            </div>
+        `;
+        basket.classList.remove('hidden');
+    } else {
+        basket.classList.add('hidden');
+    }
+}
+
