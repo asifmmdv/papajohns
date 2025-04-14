@@ -124,7 +124,7 @@ function openModal(item = null) {
                 <div onclick='modal.classList.toggle("hidden")' class="ml-auto mr-[12px] mt-[8px]">
                     <i class="fa-solid fa-xmark text-[28px]"></i>
                 </div>
-                <div class="flex flex-col justify-center items-centerj w-full h-full py-[20px]">
+                <div class="flex flex-col justify-center items-center w-full h-full py-[20px]">
                     <div class="flex flex-col ">
                         <img src="${item.img}" class="w-[317px] h-[211px] rounded-[20px]">
                         <h2 class="text-[24px] mt-[20px] text-left font-bold">${item.title}</h2>
