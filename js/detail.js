@@ -115,7 +115,7 @@ function observeSections() {
 
 function openModal(item = null) {
     const modalContent = document.getElementById('modal-content');
-    
+    document.body.classList.toggle("overflow-hidden")
     if (item) {
         currentItem = item;
         quantity = 1;
@@ -153,6 +153,7 @@ function openModal(item = null) {
     }
     
     modal.classList.toggle("hidden");
+    
 }
 
 function changeQuantity(amount) {
