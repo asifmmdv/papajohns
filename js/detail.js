@@ -169,7 +169,7 @@ function openModal(item = null) {
         currentItem = item;
         quantity = 1;
         modalContent.innerHTML = `
-            <div class="flex flex-col w-full bg-[rgb(246,246,246)]">
+            <div class="flex flex-col w-full">
                 <div onclick='modal.classList.toggle("hidden")' class="ml-auto mr-[12px] mt-[8px]">
                     <i class="fa-solid fa-xmark text-[28px]"></i>
                 </div>
@@ -179,7 +179,7 @@ function openModal(item = null) {
                         <h2 class="text-[24px] mt-[20px] text-left font-bold">${item.title}</h2>
                         <p class="text-[14px] text-center mt-[8px]">${item.composition}</p>
                     </div>
-                    <div class="flex items-center p-[24px] gap-4 text-nowrap justify-between mt-[280px]">
+                    <div class="flex items-center p-[24px]  gap-4 text-nowrap justify-between mt-[180px]">
                         <div class="flex items-center gap-7 h-[60px]">
                             <p class="text-[18px] w-[80px] font-[900] text-[#2D5D2A]" id="total-price">${item.price} AZN</p>
                             <div class="flex items-center gap-2">
