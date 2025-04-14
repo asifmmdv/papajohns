@@ -209,6 +209,9 @@
   .bottom-4 {
     bottom: calc(var(--spacing) * 4);
   }
+  .left-0 {
+    left: calc(var(--spacing) * 0);
+  }
   .z-999 {
     z-index: 999;
   }
@@ -301,6 +304,9 @@
   }
   .flex {
     display: flex;
+  }
+  .grid {
+    display: grid;
   }
   .hidden {
     display: none;
@@ -415,6 +421,9 @@
   }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
   .flex-col {
     flex-direction: column;
@@ -734,6 +743,11 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .max-desktop\:grid {
+    @media (width < 992px) {
+      display: grid;
+    }
+  }
   .max-desktop\:hidden {
     @media (width < 992px) {
       display: none;
@@ -744,9 +758,29 @@
       width: 80%;
     }
   }
+  .max-desktop\:grid-cols-2 {
+    @media (width < 992px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
   .max-tablet\:w-\[95\%\] {
     @media (width < 768px) {
       width: 95%;
+    }
+  }
+  .max-tablet\:grid-cols-2 {
+    @media (width < 768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .max-tablet\:grid-cols-4 {
+    @media (width < 768px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .max-mobile\:grid {
+    @media (width < 480px) {
+      display: grid;
     }
   }
   .max-mobile\:hidden {
@@ -767,6 +801,16 @@
   .max-mobile\:w-\[376px\] {
     @media (width < 480px) {
       width: 376px;
+    }
+  }
+  .max-mobile\:grid-cols-2 {
+    @media (width < 480px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .mobile\:flex {
+    @media (width >= 480px) {
+      display: flex;
     }
   }
   .mobile\:hidden {
@@ -804,6 +848,11 @@
       min-width: 130px;
     }
   }
+  .mobile\:flex-wrap {
+    @media (width >= 480px) {
+      flex-wrap: wrap;
+    }
+  }
   .mobile\:text-\[12px\] {
     @media (width >= 480px) {
       font-size: 12px;
@@ -824,9 +873,19 @@
       font-size: 32px;
     }
   }
+  .tablet\:grid {
+    @media (width >= 768px) {
+      display: grid;
+    }
+  }
   .tablet\:max-w-\[88\%\] {
     @media (width >= 768px) {
       max-width: 88%;
+    }
+  }
+  .tablet\:grid-cols-4 {
+    @media (width >= 768px) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
   .tablet\:text-\[14px\] {

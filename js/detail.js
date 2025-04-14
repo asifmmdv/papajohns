@@ -28,7 +28,6 @@ const containerToSectionMap = {
 let currentItem = null;
 let quantity = 1;
 
-// Load cart from localStorage if it exists
 function loadCartFromLocalStorage() {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -37,14 +36,12 @@ function loadCartFromLocalStorage() {
     updateBasketDisplay();
 }
 
-// Save cart to localStorage
 function saveCartToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 let cart = [];
 
-// Fetch data for categories and items
 async function fetchData(url, containerId, handler) {
     try {
         const res = await fetch(url);
@@ -59,8 +56,6 @@ async function fetchData(url, containerId, handler) {
         console.error(`Error fetching ${url}:`, error);
     }
 }
-
-// Handle displaying products
 function handleProducts(containerId, items) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -77,7 +72,6 @@ function handleProducts(containerId, items) {
     `).join('');
 }
 
-// Handle categories in the header
 function handleHeader() {
     menu.innerHTML = categoryData.map(item => {
         const containerId = item.category.toLowerCase();
@@ -92,7 +86,6 @@ function handleHeader() {
     observeSections(); 
 }
 
-// Scroll to the respective section
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -102,7 +95,6 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Observe sections for active state
 function observeSections() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -134,7 +126,6 @@ function observeSections() {
     });
 }
 
-// Open modal to view item details
 function openModal(item = null) {
     const modalContent = document.getElementById('modal-content');
     if (item) {
@@ -176,7 +167,7 @@ function openModal(item = null) {
     modal.classList.toggle("hidden");
 }
 
-// Change quantity in modal
+
 function changeQuantity(amount) {
     quantity = Math.max(1, quantity + amount);
     document.getElementById('quantity').textContent = quantity;
@@ -187,7 +178,6 @@ function changeQuantity(amount) {
     }
 }
 
-// Add item to cart
 function addToCart() {
     if (currentItem) {
         const existingItem = cart.find(item => item.id === currentItem.id);
@@ -209,7 +199,6 @@ function addToCart() {
     }
 }
 
-// Update Basket Display and save to localStorage
 function updateBasketDisplay() {
     const basket = document.getElementById('basket');
     if (!basket) return;
@@ -233,10 +222,9 @@ function updateBasketDisplay() {
         basket.classList.add('hidden');
     }
     
-    saveCartToLocalStorage(); // Save cart to localStorage
+    saveCartToLocalStorage(); 
 }
 
-// Show basket details
 function showBasketDetails() {
     const totalBasket = document.getElementById("totalBasket");
     totalBasket.classList.remove("hidden");
@@ -261,32 +249,33 @@ function showBasketDetails() {
             </div>
             <div id="basket-items" class="flex flex-col gap-4 overflow-y-auto max-h-[70vh]">
                 ${cart.map(item => `
-                    <div class="flex items-center justify-between border p-2 rounded">
+                    <div class="flex flex-col  border p-2 rounded">
                         <div class="flex items-center gap-3">
-                            <img src="${item.img}" class="w-16 h-16 object-cover rounded" />
                             <div>
                                 <h3 class="font-semibold">${item.title}</h3>
                                 <p class="text-sm">${item.price} AZN</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="updateCartQuantity('${item.id}', -1)" class="w-6 h-6 border rounded-full flex items-center justify-center">-</button>
-                            <span>${item.quantity}</span>
-                            <button onclick="updateCartQuantity('${item.id}', 1)" class="w-6 h-6 border rounded-full flex items-center justify-center">+</button>
+                        <div class="flex items-center ml-auto  gap-2">
+                            <button onclick="updateCartQuantity('${item.id}', -1)" class="flex items-center justify-center w-8 h-8 rounded-full p-2 text-[#2D5D2A] border-[grey] text-[12px] border-[1px]"> <i class="fa-solid fa-minus"></i></button>
+                            <span class="font-[900]">${item.quantity}</span>
+                            <button onclick="updateCartQuantity('${item.id}', 1)" class="flex items-center justify-center w-8 h-8 rounded-full p-2 text-[#2D5D2A] border-[grey] text-[12px] border-[1px]""><i class="fa-solid fa-plus"></i></button>
                         </div>
                         <div class="font-bold">${item.totalPrice} AZN</div>
                     </div>
                 `).join('')}
             </div>
             <div class="mt-auto pt-4 border-t flex justify-between items-center">
-                <span class="text-xl font-bold">Cəmi:</span>
+                <span class="text-xl font-bold">Yekun:</span>
                 <span class="text-xl font-bold">${cart.reduce((sum, i) => sum + (i.price * i.quantity), 0).toFixed(2)} AZN</span>
+            </div>
+            <div>
+                <img src="../images/giphy.gif" alt="gif">
             </div>
         </div>
     `;
 }
 
-// Update item quantity in cart
 function updateCartQuantity(itemId, amount) {
     const item = cart.find(i => i.id === itemId);
     if (!item) return;
@@ -306,19 +295,17 @@ function updateCartQuantity(itemId, amount) {
         closeBasket();
     }
 
-    saveCartToLocalStorage(); // Save cart to localStorage
+    saveCartToLocalStorage(); 
 }
 
-// Close basket modal
 function closeBasket() {
     const totalBasket = document.getElementById("totalBasket");
     totalBasket.classList.add("hidden");
 }
 
-// Initialize the page and load data
 (async function init() {
     await Promise.all(endpoints.map(endpoint =>
         fetchData(endpoint.url, endpoint.container, endpoint.handler || handleProducts)
     ));
-    loadCartFromLocalStorage();  // Load cart from local storage on page load
+    loadCartFromLocalStorage();  
 })();
