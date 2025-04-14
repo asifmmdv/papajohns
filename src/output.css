@@ -734,6 +734,9 @@
   .pb-\[30px\] {
     padding-bottom: 30px;
   }
+  .text-center {
+    text-align: center;
+  }
   .text-left {
     text-align: left;
   }
@@ -799,6 +802,9 @@
   }
   .text-nowrap {
     text-wrap: nowrap;
+  }
+  .text-wrap {
+    text-wrap: wrap;
   }
   .text-\[\#2D5D2A\] {
     color: #2D5D2A;
