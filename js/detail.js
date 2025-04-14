@@ -3,8 +3,8 @@ const categoryData = [];
 const modal = document.getElementById('modal');
 
 const endpoints = [
-    { url: "https://papajson.vercel.app/papadias", container: null, handler: handleHeader },
-    { url: "http://localhost:3000/papadias", container: "papadias" },
+    { url: "http://localhost:3000/category", container: null, handler: handleHeader },
+    { url: "https://papajson.vercel.app/papadias", container: "papadias" },
     { url: "http://localhost:3000/pizza", container: "pizza" },
     { url: "http://localhost:3000/qalyanaltilar", container: "qalyanaltilar" },
     { url: "http://localhost:3000/salat", container: "salat" },
