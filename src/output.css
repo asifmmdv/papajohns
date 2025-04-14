@@ -746,6 +746,16 @@
       width: 156px;
     }
   }
+  .mobile\:max-w-\[0\%\] {
+    @media (width >= 480px) {
+      max-width: 0%;
+    }
+  }
+  .mobile\:max-w-\[80\%\] {
+    @media (width >= 480px) {
+      max-width: 80%;
+    }
+  }
   .mobile\:max-w-\[90\%\] {
     @media (width >= 480px) {
       max-width: 90%;
